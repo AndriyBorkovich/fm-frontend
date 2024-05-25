@@ -1,0 +1,33 @@
+<h1 class="mt-5 text-center font-bold text-2xl">Register</h1>
+<form class="max-w-sm mx-auto" [formGroup]="registerForm" novalidate (ngSubmit)="registerUser(registerForm.value)">
+  <div class="mb-5">
+    <label for="firstName" class="form-label">First name*</label>
+    <input type="text" id="firstName" formControlName="firstName" class="form-input" placeholder="Robert" required>
+    <p *ngIf="validateControl('firstName') && hasError('firstName', 'required')"
+       class="error-msg">First name is required!</p>
+  </div>
+  <div class="mb-5">
+    <label for="lastName" class="form-label">Last name*</label>
+    <input type="text" id="lastName" formControlName="lastName" class="form-input" placeholder="Rodriguez" required>
+    <p *ngIf="validateControl('lastName') && hasError('lastName', 'required')"
+       class="error-msg">Last name is required!</p>
+  </div>
+  <div class="mb-5">
+    <label for="email" class="form-label">Email*</label>
+    <input type="email" id="email" formControlName="email" class="form-input" placeholder="name@domain.com" required>
+    <p *ngIf="validateControl('email') && hasError('email', 'email')"
+       class="error-msg">Invalid email!</p>
+    <p *ngIf="validateControl('email') && hasError('email', 'required')"
+       class="error-msg">Email is required!</p>
+  </div>
+  <div class="mb-5">
+    <label for="password" class="form-label">Password*</label>
+    <input type="password" formControlName="password" id="password" class="form-input" required>
+    <p *ngIf="validateControl('password') && hasError('password', 'required')"
+       class="error-msg">Password is required!</p>
+  </div>
+  <div class="flex">
+    <button type="submit" class="submit-btn mr-3" [disabled]="!registerForm.valid">Submit</button>
+    <button class="submit-btn" (click)="onCancel()">Cancel</button>
+  </div>
+</form>
