@@ -13,6 +13,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideToastr(),
     provideHttpClient(),
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true}
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: ErrorHandlerInterceptor, 
+      multi: true
+    }
   ]
 };

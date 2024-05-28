@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {User} from "../../models/user";
 import {Router} from "@angular/router";
 import {RegistrationRequestDto} from "../../dtos/requests/registrationRequestDto";
 import {NgIf} from "@angular/common";
@@ -61,6 +60,7 @@ export class RegisterFormComponent implements OnInit {
     this.accountService.register(user)
       .subscribe({
         next: (result: RegistrationResponseDto) => {
+          this.accountService.sendAuthStateChangeNotification(result.isSuccessfulRegistration);
           if(result.isSuccessfulRegistration) {
             this.toaster.success("User registered successfully", "Congrats!", {
               timeOut: 5000

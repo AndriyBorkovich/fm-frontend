@@ -8,7 +8,9 @@ import {
 import {catchError, Observable} from "rxjs";
 import {NavigationExtras, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor
 {
   constructor(private router: Router, private toaster: ToastrService) { }
@@ -36,6 +38,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor
               }
               case 401: {
                 this.toaster.error('Unauthorized', err.status.toString());
+                this.router.navigateByUrl('/login');
                 break;
               }
               case 404: {
@@ -51,7 +54,6 @@ export class ErrorHandlerInterceptor implements HttpInterceptor
                 this.toaster.error('Something unexpected happened');
                 console.log(err);
                 break;
-
             }
           }
           throw err;

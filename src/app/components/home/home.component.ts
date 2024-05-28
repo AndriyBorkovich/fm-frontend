@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {RegisterFormComponent} from "../sign-form/register-form.component";
 import {NgIf} from "@angular/common";
 import {Router} from "@angular/router";
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -26,10 +27,19 @@ import {Router} from "@angular/router";
   `,
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   isLoggedIn : boolean = false;
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AccountService
+  ) { }
+
+  ngOnInit(): void {
+    this.authService.authChanged.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
+
   handleRegisterClick(){
     this.router.navigateByUrl('/register').then(() => console.log("Moved to registration"));
   }
