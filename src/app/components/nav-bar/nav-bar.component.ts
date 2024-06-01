@@ -16,11 +16,17 @@ import { AccountService } from '../../services/account.service';
 })
 export class NavBarComponent {
   public isUserAuthenticated: boolean;
+  
   constructor(private authService: AccountService) { }
+  
   ngOnInit(): void {
     this.authService.authChanged
     .subscribe(res => {
       this.isUserAuthenticated = res;
     })
+  }
+
+  signOut() {
+    this.authService.logout();
   }
 }

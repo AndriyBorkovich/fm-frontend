@@ -6,6 +6,7 @@ import {Subject, map} from "rxjs";
 import {RegistrationResponseDto} from "../dtos/responses/registrationResponseDto";
 import { LoginRequestDto } from '../dtos/requests/loginRequestDto';
 import { AuthResponseDto } from '../dtos/responses/authResponseDto';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AccountService {
   private authChangeSub = new Subject<boolean>()
   public authChanged = this.authChangeSub.asObservable();
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   register(model: RegistrationRequestDto) {
     return this.http.post<RegistrationResponseDto>(`${this.apiUrl}account/register`, model);
@@ -26,8 +27,21 @@ export class AccountService {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     this.sendAuthStateChangeNotification(false);
+  }
+
+  isUserAuthenticated = (): boolean => {
+    const token = localStorage.getItem("token");
+ 
+    return token && !this.jwtHelper.isTokenExpired(token);
+  }
+
+  getCurrentRole() {
+    const token = localStorage.getItem("token");
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+    return role;
   }
 
   sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
