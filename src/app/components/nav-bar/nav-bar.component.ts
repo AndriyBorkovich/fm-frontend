@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NgIf, NgOptimizedImage} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import { AccountService } from '../../services/account.service';
 
 @Component({
@@ -9,7 +9,8 @@ import { AccountService } from '../../services/account.service';
   imports: [
     NgOptimizedImage,
     RouterLink,
-    NgIf
+    NgIf,
+    RouterLinkActive
   ],
   templateUrl: './nav-bar.component.html',
   styles: ``

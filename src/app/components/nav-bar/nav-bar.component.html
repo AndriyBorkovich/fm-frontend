@@ -7,8 +7,8 @@
               id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
               data-dropdown-placement="bottom">
         <span class="sr-only">Open user menu</span>
-        <img class="w-10 h-10 rounded-full" ngSrc="/src/assets/images/user-avatar.png" alt="user"
-             height="2048" width="2048">
+        <img class="w-10 h-10 rounded-full" src="../../../assets/images/user-avatar.png" alt="user"
+             height="40" width="40">
       </button>
 
       <!-- Dropdown menu -->
@@ -44,13 +44,16 @@
     <div class="flex items-center">
       <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
         <li>
-          <a href="#" class="text-gray-900 dark:text-white hover:underline" routerLink="/" aria-current="page">Home</a>
+          <a href="#" class="text-gray-900 dark:text-white hover:underline" routerLink="/" aria-current="page" routerLinkActive="active">Home</a>
         </li>
         <li>
-          <a href="#" class="text-gray-900 dark:text-white hover:underline">Teams</a>
+          <a href="#" class="text-gray-900 dark:text-white hover:underline" routerLink="/clubs" routerLinkActive="active">Clubs</a>
         </li>
         <li>
           <a href="#" class="text-gray-900 dark:text-white hover:underline">Championships</a>
+        </li>
+        <li>
+          <a href="#" class="text-gray-900 dark:text-white hover:underline">Statistics</a>
         </li>
       </ul>
     </div>

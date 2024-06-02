@@ -4,11 +4,13 @@ import {RegisterFormComponent} from "./components/sign-form/register-form.compon
 import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {ServerErrorComponent} from "./components/error-pages/server-error/server-error.component";
 import {NotFoundComponent} from "./components/error-pages/not-found/not-found.component";
+import { ClubsViewComponent } from './components/features/clubs/clubs-view/clubs-view.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'server-error', component: ServerErrorComponent },
-  { path: 'not-found', component: NotFoundComponent }
+  { path: 'not-found', component: NotFoundComponent },
+  { path: 'clubs', component: ClubsViewComponent}
 ];
