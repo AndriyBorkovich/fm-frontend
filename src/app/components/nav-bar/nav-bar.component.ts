@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NgIf, NgOptimizedImage} from "@angular/common";
-import {RouterLink, RouterLinkActive} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import { AccountService } from '../../services/account.service';
 
 @Component({
@@ -18,16 +18,14 @@ import { AccountService } from '../../services/account.service';
 export class NavBarComponent {
   public isUserAuthenticated: boolean;
   
-  constructor(private authService: AccountService) { }
+  constructor(private authService: AccountService, private router: Router) { }
   
   ngOnInit(): void {
-    this.authService.authChanged
-    .subscribe(res => {
-      this.isUserAuthenticated = res;
-    })
+    this.isUserAuthenticated = this.authService.isUserAuthenticated();
   }
 
   signOut() {
     this.authService.logout();
+    this.router.navigateByUrl('');
   }
 }

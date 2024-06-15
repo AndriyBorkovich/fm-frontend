@@ -35,9 +35,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.authChanged.subscribe((isLoggedIn) => {
-      this.isLoggedIn = isLoggedIn;
-    });
+    this.isLoggedIn = this.authService.isUserAuthenticated()
   }
 
   handleRegisterClick(){

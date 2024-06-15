@@ -10,20 +10,22 @@ import { ClubService } from '../../../../services/club.service';
 import { GetAllClubsShortInfoRequestDto } from '../../../../dtos/requests/getAllClubsShortInfoRequestDto';
 import { Pagination } from '../../../../models/pagination';
 import { HasAnyAppRoleDirective } from '../../../../directives/has-any-app-role.directive';
+import { Router } from '@angular/router';
+import { PaginatorComponent } from '../../../paginator/paginator.component';
 @Component({
   selector: 'app-clubs-view',
   standalone: true,
   imports: [
     NgIf,
     MatIconModule,
-    MatPaginatorModule,
+    PaginatorComponent,
     MatProgressSpinnerModule,
     MatTooltipModule,
     AsyncPipe,
     HasAnyAppRoleDirective
   ],
   templateUrl: './clubs-view.component.html',
-  styleUrl: './clubs-view.component.scss'
+  styles: ``
 })
 export class ClubsViewComponent {
   clubs$: Observable<Club[]>;
@@ -31,7 +33,7 @@ export class ClubsViewComponent {
   pageSize = 5;
   currentPage = 0;
 
-  constructor(private clubService: ClubService) {}
+  constructor(private clubService: ClubService, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllClubs();
@@ -41,6 +43,10 @@ export class ClubsViewComponent {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.getAllClubs();
+  }
+
+  navigateToClubDetails(id: number): void {
+    this.router.navigate(['/clubs', id]);
   }
 
   private getAllClubs() {

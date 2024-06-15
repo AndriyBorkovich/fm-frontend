@@ -33,8 +33,9 @@ export class AccountService {
 
   isUserAuthenticated = (): boolean => {
     const token = localStorage.getItem("token");
+    console.log()
  
-    return token && !this.jwtHelper.isTokenExpired(token);
+    return token !== null && !this.jwtHelper.isTokenExpired(token);
   }
 
   getCurrentRole() {

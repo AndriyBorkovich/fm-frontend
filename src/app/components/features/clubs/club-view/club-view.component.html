@@ -1,0 +1,58 @@
+<div class="container mx-auto mt-10 p-4 bg-green-100 shadow rounded-lg">
+
+  <!-- Club Header -->
+  <div class="flex items-center mb-6">
+    <div>
+      <h1 class="text-2xl font-bold">{{ clubDetails.clubName }}</h1>
+      <p class="text-gray-600">Stadium: <span class="font-medium">{{ clubDetails.stadiumName }}</span></p>
+      <p class="text-gray-600">Coach: <span class="font-medium">{{ clubDetails.coachName }}</span></p>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+
+  <div
+    class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px">
+      <li class="me-2" (click)="setActiveTab('overview')">
+        <a
+          [class]="activeTab === 'overview' ? 'inline-block p-4 text-green-600 border-b-2 border-green-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500' : 'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'">
+          Overview
+        </a>
+      </li>
+      <li class="me-2" (click)="setActiveTab('matches')">
+        <a
+          [class]="activeTab === 'matches' ? 'inline-block p-4 text-green-600 border-b-2 border-green-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500' : 'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'">
+          Matches
+        </a>
+      </li>
+      <li (click)="setActiveTab('players')">
+        <a
+          [class]="activeTab === 'players' ? 'inline-block p-4 text-green-600 border-b-2 border-green-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500' : 'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'">
+          Players
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <div *ngIf="activeTab === 'overview'">
+      <div class="mt-4">
+        <p>Participated Championships: <span class="font-medium">{{ clubDetails.participatedChampionships }}</span></p>
+        <p>Average Squad Age: <span class="font-medium">{{ clubDetails.averageSquadAge }}</span></p>
+        <p>Total Played Matches: <span class="font-medium">{{ clubDetails.totalPlayedMatches }}</span></p>
+        <p>Wins: <span class="font-medium">{{ clubDetails.wins }}</span></p>
+        <p>Losses: <span class="font-medium">{{ clubDetails.losses }}</span></p>
+        <p>Draws: <span class="font-medium">{{ clubDetails.draws }}</span></p>
+        <p>Scored Goals: <span class="font-medium">{{ clubDetails.scoredGoals }}</span></p>
+        <p>Conceded Goals: <span class="font-medium">{{ clubDetails.concededGoals }}</span></p>
+      </div>
+    </div>
+    <div *ngIf="activeTab === 'matches'">
+      <app-club-match-history [clubId]="clubId"></app-club-match-history>
+    </div>
+    <div *ngIf="activeTab === 'players'">
+      <app-club-players-view [clubId]="clubId"></app-club-players-view>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div *ngIf="players.length > 0; else loading" class="bg-green-100 p-4 rounded-lg">
+    <table class="min-w-full bg-white">
+        <thead class="bg-green-200">
+            <tr>
+                <th class="py-2 text-center">Name</th>
+                <th class="py-2 text-center">Age</th>
+                <th class="py-2 text-center">Nationality</th>
+                <th class="py-2 text-center">Position</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players" class="even:bg-green-50 odd:bg-green-100">
+                <td class="py-2 text-center">{{ player.name }}</td>
+                <td class="py-2 text-center">{{ player.age }}</td>
+                <td class="py-2 text-center">{{ player.nationality }}</td>
+                <td class="py-2 text-center">{{ player.position }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<app-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage" (page)="pageChanged($event)" />
+
+<ng-template #loading>
+    <div class="flex justify-center">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
