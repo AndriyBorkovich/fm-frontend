@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { GetAllPlayersShortInfoRequest } from '../dtos/requests/getAllPlayersShortInfoRequest';
 import { GetAllPlayersShortInfoResponse } from '../dtos/responses/getAllPlayersShortInfoResponse';
 import { ListResponse } from '../models/listResponse';
+import { GetPlayerWithStatsResponse } from '../dtos/responses/getPlayerWithStatsResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,11 @@ export class PlayerService {
     if (request.clubId !== undefined && request.clubId !== null) {
       url += `&ClubId=${request.clubId}`;
     }
-    
+
     return this.http.get<ListResponse<GetAllPlayersShortInfoResponse>>(url);
+  }
+
+  getById(id: number) {
+    return this.http.get<GetPlayerWithStatsResponse>(`${this.baseUrl}/GetById/${id}`);
   }
 }

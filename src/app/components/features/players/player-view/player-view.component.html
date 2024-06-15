@@ -1,0 +1,20 @@
+<div class="container w-3/4 mx-auto mt-10 p-4 bg-green-200 shadow rounded-lg">
+    <!-- Player Header -->
+    <div class="flex items-center mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">{{ player.name }}</h1>
+        <p class="text-gray-600">Club: <span class="font-medium">{{ player.clubName }}</span></p>
+        <p class="text-gray-600">Position: <span class="font-medium">{{ player.position }}</span></p>
+        <p class="text-gray-600">Age: <span class="font-medium">{{ player.age }}</span></p>
+      </div>
+    </div>
+  
+    <!-- Player Stats -->
+    <div class="mt-4">
+      <p>Matches Played: <span class="font-medium">{{ player.matchesPlayed }}</span></p>
+      <p>Goals Scored: <span class="font-medium">{{ player.goalsScored }}</span></p>
+      <p>Assists: <span class="font-medium">{{ player.assists }}</span></p>
+      <p>Red Cards: <span class="font-medium">{{ player.redCards }}</span></p>
+      <p>Yellow Cards: <span class="font-medium">{{ player.yellowCards }}</span></p>
+    </div>
+  </div>

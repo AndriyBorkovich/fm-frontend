@@ -1,4 +1,4 @@
-<div *ngIf="players.length > 0; else loading" class="bg-green-100 p-4 rounded-lg">
+<div *ngIf="players.length > 0; else loading" class="bg-green-100 p-4 sm:rounded-lg">
     <table class="min-w-full bg-white">
         <thead class="bg-green-200">
             <tr>
@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let player of players" class="even:bg-green-50 odd:bg-green-100">
+            <tr *ngFor="let player of players" class="even:bg-green-50 odd:bg-green-100 hover:bg-green-300" (click)="navigateToPlayerDetails(player.id)">
                 <td class="py-2 text-center">{{ player.name }}</td>
                 <td class="py-2 text-center">{{ player.age }}</td>
                 <td class="py-2 text-center">{{ player.nationality }}</td>

@@ -7,6 +7,7 @@ import { GetAllPlayersShortInfoRequest } from '../../../../dtos/requests/getAllP
 import { Pagination } from '../../../../models/pagination';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { PaginatorComponent } from '../../../paginator/paginator.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-club-players-view',
@@ -22,7 +23,7 @@ export class ClubPlayersViewComponent implements OnInit {
   pageSize = 10;
   currentPage = 0;
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -32,6 +33,10 @@ export class ClubPlayersViewComponent implements OnInit {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.getAll();
+  }
+
+  navigateToPlayerDetails(id: number): void {
+    this.router.navigate(['/players', id]);
   }
 
   private getAll() {
