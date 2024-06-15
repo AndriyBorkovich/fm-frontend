@@ -1,0 +1,30 @@
+<div class="overflow-x-auto">
+    <table class="min-w-full border-collapse border border-gray-200">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="border border-gray-200 px-4 py-2 text-left">Club</th>
+          <th class="border border-gray-200 px-4 py-2 text-center">P</th>
+          <th class="border border-gray-200 px-4 py-2 text-center">W</th>
+          <th class="border border-gray-200 px-4 py-2 text-center">D</th>
+          <th class="border border-gray-200 px-4 py-2 text-center">L</th>
+          <th class="border border-gray-200 px-4 py-2 text-center">F</th>
+          <th class="border border-gray-200 px-4 py-2 text-center">A</th>
+          <th class="border border-gray-200 px-4 py-2 text-center">GD</th>
+          <th class="border border-gray-200 px-4 py-2 text-center">Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of seasonTable">
+          <td class="border border-gray-200 px-4 py-2">{{ team.clubName }}</td>
+          <td class="border border-gray-200 px-4 py-2 text-center">{{ team.playedGames }}</td>
+          <td class="border border-gray-200 px-4 py-2 text-center">{{ team.wins }}</td>
+          <td class="border border-gray-200 px-4 py-2 text-center">{{ team.draws }}</td>
+          <td class="border border-gray-200 px-4 py-2 text-center">{{ team.losses }}</td>
+          <td class="border border-gray-200 px-4 py-2 text-center">{{ team.goalsFor }}</td>
+          <td class="border border-gray-200 px-4 py-2 text-center">{{ team.goalsAgainst }}</td>
+          <td class="border border-gray-200 px-4 py-2 text-center">{{ team.goalDifference }}</td>
+          <td class="border border-gray-200 px-4 py-2 text-center">{{ team.points }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,52 @@
+<div class="container flex-auto w-3/4 mx-auto mt-10 p-4 bg-green-100 shadow rounded-lg">
+    <!-- Championship Header -->
+    <div class="flex items-center mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">{{leagueName}}</h1>
+      </div>
+    </div>
+
+    <div class="mb-6">
+        <div class="flex space-x-2">
+          <span *ngFor="let season of seasons" 
+                (click)="selectSeason(season.seasonId)" 
+                [class]="season.seasonId === selectedSeasonId ? 'bg-green-600 text-white px-4 py-1 rounded-full cursor-pointer' : 'bg-green-200 text-green-800 px-4 py-1 rounded-full cursor-pointer'">
+            {{ season.year }}
+          </span>
+        </div>
+      </div>
+  
+    <!-- Navigation Tabs -->
+    <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+      <ul class="flex flex-wrap -mb-px">
+        <li class="me-2" (click)="setActiveTab('table')">
+          <a [class]="activeTab === 'table' ? 'inline-block p-4 text-green-600 border-b-2 border-green-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500' : 'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'">
+            Table
+          </a>
+        </li>
+        <li class="me-2" (click)="setActiveTab('topScorers')">
+          <a [class]="activeTab === 'topScorers' ? 'inline-block p-4 text-green-600 border-b-2 border-green-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500' : 'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'">
+            Top Scorers
+          </a>
+        </li>
+        <li (click)="setActiveTab('topAssistants')">
+          <a [class]="activeTab === 'topAssistants' ? 'inline-block p-4 text-green-600 border-b-2 border-green-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500' : 'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300'">
+            Top Assistants
+          </a>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="selectedSeasonId">
+      <div *ngIf="activeTab === 'table'">
+        <app-season-table [seasonId]="selectedSeasonId"></app-season-table>
+      </div>
+      <div *ngIf="activeTab === 'topScorers'">
+        <app-season-top-scorers [seasonId]="selectedSeasonId"></app-season-top-scorers>
+      </div>
+      <div *ngIf="activeTab === 'topAssistants'">
+        <app-season-top-assistants [seasonId]="selectedSeasonId"></app-season-top-assistants>
+      </div>
+    </div>
+  </div>
+  
